@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/vishalkuppusamy/hello-vishal.git'
+                git branch: 'main', url: 'https://github.com/vishalkuppusamy/thedevops.git'
             }
         }
         stage('Build Docker Image') {
