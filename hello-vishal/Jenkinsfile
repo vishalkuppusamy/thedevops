@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $DOCKER_HUB_REPO .'
+                sh 'docker build -t $DOCKER_HUB_REPO -f hello-vishal/Dockerfile hello-vishal'
             }
         }
         stage('Push to Docker Hub') {
