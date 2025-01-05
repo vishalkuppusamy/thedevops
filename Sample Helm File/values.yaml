@@ -1,0 +1,71 @@
+productsapi:
+  replicaCount: 2
+
+
+image:
+  repository: mohitsalgotra/flask-app
+  tag: latest
+  pullPolicy: Always
+
+
+mongo:
+  uri: mongodb://127:27017
+  username: your-username
+  password: your-password
+
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: "project"
+              operator: In
+              values:
+                - "webapp"
+tolerations:
+  - key: "person"
+    operator: "Equal"
+    value: "nesnu"
+    effect: "NoSchedule"
+
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+
+ingress:
+  enabled: false
+  annotations: {}
+  hosts:
+    - host: python-api.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+
+service:
+  type: ClusterIP
+  port: 80
+
+env:
+  APP_ENV: production
+  APP_DEBUG: false
+
+liveness
+readiness
+health path
+
